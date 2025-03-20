@@ -5,7 +5,7 @@ Setup instructions
 
 - Clone the repository
 ```bash
-  git clone 
+  git clone https://github.com/MuhammadMahediHasan/doctor-appointment-booking-system.git
 ```
 - Copy .env.example to .env
 ```bash
