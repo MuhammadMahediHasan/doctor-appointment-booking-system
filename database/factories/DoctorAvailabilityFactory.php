@@ -26,7 +26,7 @@ class DoctorAvailabilityFactory extends Factory
 
         return [
             'doctor_id' => User::query()
-                ->where('role', 'doctor')
+                ->where('role', User::DOCTOR)
                 ->inRandomOrder()
                 ->first()->id, // Random doctor
             'date' => $this->faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),

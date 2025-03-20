@@ -37,14 +37,14 @@ class UserFactory extends Factory
     public function doctor(): Factory|UserFactory
     {
         return $this->state(fn (array $attributes) => [
-            'role' => 'doctor',
+            'role' => User::DOCTOR,
         ]);
     }
 
     public function patient(): Factory|UserFactory
     {
         return $this->state(fn (array $attributes) => [
-            'role' => 'patient',
+            'role' => User::PATIENT,
         ]);
     }
 

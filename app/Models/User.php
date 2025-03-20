@@ -48,4 +48,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    const DOCTOR = 'doctor';
+    const PATIENT = 'patient';
 }

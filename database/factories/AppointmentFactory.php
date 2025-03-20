@@ -28,7 +28,7 @@ class AppointmentFactory extends Factory
             return [
                 'doctor_id' => $availability->doctor_id,
                 'patient_id' => User::query()
-                    ->where('role', 'patient')
+                    ->where('role', User::PATIENT)
                     ->inRandomOrder()
                     ->first()->id,
                 'date' => $availability->date,
