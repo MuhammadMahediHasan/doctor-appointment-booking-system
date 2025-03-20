@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AppointmentRequest;
 use App\Models\Appointment;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class AppointmentController extends Controller
 {
     /**
-     * @param Request $request
+     * @param AppointmentRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(AppointmentRequest $request): JsonResponse
     {
-        $request->validate([
-            'doctor_id' => 'required|exists:users,id',
-            'date' => 'required|date',
-            'time_slot' => 'required|string',
-        ]);
-
         $patientId = Auth::id();
         $canBook = Appointment::canBookAppointment(
             $request->get('doctor_id'), $request->get('date'), $request->get('time_slot')

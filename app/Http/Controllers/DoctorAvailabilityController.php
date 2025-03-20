@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DoctorAvailabilityRequest;
 use App\Models\DoctorAvailability;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class DoctorAvailabilityController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function store(DoctorAvailabilityRequest $request): JsonResponse
     {
-        $request->validate([
-            'date' => 'required|date',
-            'time_slots' => 'required|array|min:1',
-            'time_slots.*' => 'string', // Each time slot should be a string
-        ]);
-
-        $doctorId = Auth::id(); // Assuming doctor is authenticated
-
+        $doctorId = Auth::id();
         $availability = DoctorAvailability::query()->updateOrCreate(
             ['doctor_id' => $doctorId, 'date' => $request->get('date')],
             ['time_slots' => $request->get('time_slots')]
